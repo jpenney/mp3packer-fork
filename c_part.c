@@ -190,6 +190,8 @@ CAMLprim value get_os_thread_self_id() {
 //		printf("HANDLE IS %p\n", (int)dup_handle);
 		out_val = win_alloc_handle(dup_handle);
 	}
+#elif defined(__APPLE__)
+    out_val = pthread_mach_thread_np(pthread_self());
 #else
 	out_val = Val_int(pthread_self());
 #endif

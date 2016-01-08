@@ -331,19 +331,9 @@ static unsigned int get_bits_slow(seq_string_t *s, int num_bits) {
 
 static unsigned int get_bits_wordwise(seq_string_t *s, int num_bits) {
 	uint32 raw;
-
-#if defined(__WIN32__) && !defined __CYGWIN__
 	uint32 *int_ptr;
 	int_ptr = (uint32 *)s->byte_ptr;
-	raw = _byteswap_ulong(*int_ptr) << s->bit_index;
-#else
-	raw = (
-		(s->byte_ptr[0] << 24) |
-		(s->byte_ptr[1] << 16) |
-		(s->byte_ptr[2] <<  8) |
-		(s->byte_ptr[3]      )
-	);
-#endif
+	raw = byteswap32(*int_ptr) << s->bit_index;
 	raw >>= 1;
 	raw >>= 31 - num_bits;
 
