@@ -77,6 +77,6 @@ clean:
 depend:
 	ocamldep *.mli *.ml > .depend
 
-include .depend
+-include .depend
 
 
