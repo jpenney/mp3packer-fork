@@ -19,7 +19,7 @@ common=$(SSEOPT) -thread unix.cmxa threads.cmxa str.cmxa $(EXLIBRARIES)
 ocaml=ocamlopt.opt $(common)
 
 
-all: mp3packer mp3reader
+all: mp3packer
 
 
 .SUFFIXES: .ml .mli .cmo .cmi .cmx $O
